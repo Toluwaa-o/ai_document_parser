@@ -1,0 +1,14 @@
+pyproject.toml
+app/main.py
+app/api_routers/v1.py
+app/db/base.py
+app/minio/minio.py
+app/routes/documents/document.py
+app/routes/health/health.py
+app/schemas/document.py
+app/utils/document.py
+document_parser.egg-info/PKG-INFO
+document_parser.egg-info/SOURCES.txt
+document_parser.egg-info/dependency_links.txt
+document_parser.egg-info/requires.txt
+document_parser.egg-info/top_level.txt

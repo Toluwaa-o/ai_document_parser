@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "document_parser"
+authors = [
+    {name = "Toluwalashe", email = "asheogunleye02@gmail.com"}
+]
+description = "AI Document Parser"
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "minio",
+    "fastapi",
+    "PyPDF2",
+    "sqlalchemy",
+    "httpx",
+    "uvicorn",
+    "openai",
+    "dotenv",
+    "asyncpg>=0.30.0",
+    "psycopg[binary]>=3.2.12",
+    "psycopg2-binary>=2.9.11",
+    "python-multipart"
+]

@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: document_parser
+Version: 0.0.1
+Summary: AI Document Parser
+Author-email: Toluwalashe <asheogunleye02@gmail.com>
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: minio
+Requires-Dist: fastapi
+Requires-Dist: PyPDF2
+Requires-Dist: sqlalchemy
+Requires-Dist: httpx
+Requires-Dist: uvicorn
+Requires-Dist: openai
+Requires-Dist: dotenv
+Requires-Dist: asyncpg>=0.30.0
+Requires-Dist: psycopg[binary]>=3.2.12
+Requires-Dist: psycopg2-binary>=2.9.11
+Requires-Dist: python-multipart
