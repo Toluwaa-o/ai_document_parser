@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-MINIO_BUCKET = "documents"
+BUCKET = "ai-document-parser"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 OPENROUTER_API_BASE = "https://openrouter.ai/api/v1"
 
@@ -46,7 +46,7 @@ def upload_to_minio(file_content: bytes, file_name: str) -> str:
         object_name = f"documents/{file_id}/{file_name}"
 
         minio_client.put_object(
-            MINIO_BUCKET,
+            BUCKET,
             object_name,
             BytesIO(file_content),
             length=len(file_content)
