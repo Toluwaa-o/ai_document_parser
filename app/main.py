@@ -2,6 +2,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from app.api_routers.v1 import api_router
 from app.routes.health.health import router as health_router
+import uvicorn
+import os
 
 MAX_FILE_SIZE = 5 * 1024 * 1024
 
