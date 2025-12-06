@@ -19,3 +19,7 @@ async def http_exception_handler(request, exc):
 
 app.include_router(health_router)
 app.include_router(api_router, prefix="/api/v1")
+
+if __name__ == "__main__":
+    port = int(os.getenv.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
