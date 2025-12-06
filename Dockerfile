@@ -1,20 +1,33 @@
 FROM python:3.11-slim
 
-# Set working directory
 WORKDIR /app
 
-# Install dependencies for Poetry
-RUN pip install --no-cache-dir poetry
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy only pyproject.toml and poetry.lock first (caching)
-COPY pyproject.toml poetry.lock* /app/
+# Install UV (much faster than pip)
+RUN pip install --no-cache-dir uv
 
-# Install dependencies
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi
+# Copy dependency files
+COPY pyproject.toml uv.lock* ./
 
-# Copy the rest of the application code
+# Install dependencies using UV
+RUN uv pip install --system --no-cache-dir -r <(uv pip compile pyproject.toml)
+
+# Copy application code
 COPY . .
 
-# Run the app
+# Create non-root user for security
+RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+USER appuser
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Run app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
